@@ -32,17 +32,19 @@ public class Recetario {
         String pass="";
         String rece="";
         String modf="";
+        
         boolean cb=false;
         boolean a=false;
+        boolean comprobar=false;
         
         char c='a';
         
-        /*ResultSet rs = bd.consulta("select * from recetas");
+        ResultSet rs = bd.consulta("select * from recetas");
         ResultSet nC = bd.consulta("select count(*) from recetas");
         nC.next();
         while(rs.next()){
             System.out.println(rs.getString(2));
-        }*/
+        }
         do {
             System.out.println("1.Iniciar sesion");
             System.out.println("2.Registrarse");
@@ -115,12 +117,16 @@ public class Recetario {
                                         cb=false;
                                         a = bd.buscarRecetas(rece,cb);
                                         if (a) {
-                                            System.out.print("Que desea modificar: ");
-                                            modf=sc.nextLine();
-                                            
+                                            do {
+                                                System.out.print("Que desea modificar: ");
+                                                modf=sc.nextLine();
+                                                comprobar=bd.comprobar(modf);
+                                            } while (!comprobar);
+   
                                         }else{
                                             System.out.println("No encontrada");
                                         }
+                                        
                                             
                                     break;
                                 case 3:

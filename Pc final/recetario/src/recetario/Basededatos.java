@@ -12,15 +12,15 @@ import java.util.Scanner;
  * @author EAG
  */
 public class Basededatos {
-   /*
+   
     final String url = "jdbc:oracle:thin:@//localhost:1521/xe";
     final String username = "aula";
     final String pass = "aula";
-    */
+    /*
     final String url = "jdbc:oracle:thin:@//localhost:1521/xe";
     final String username = "nasaro";
     final String pass = "1234";
-    
+    */
     private Connection con;
     
     public Basededatos() throws ClassNotFoundException, SQLException {
@@ -85,10 +85,10 @@ public class Basededatos {
         }
     }
     public void mostrarRecetas(String a)throws SQLException{
-        ResultSet rs = consulta("select * from recetas where nombre='" + a+"'");
-        ResultSet nC = consulta("select count(*) from recetas");
-        nC.next();
-        while(rs.next()){
+        ResultSet rs = consulta("select * from recetas");
+        /*ResultSet nC = consulta("select count(*) from recetas");
+        nC.next();*/
+        while (rs.next()) {
             System.out.println(rs.getString(2));
         }
         skip();
@@ -106,6 +106,7 @@ public class Basededatos {
         }else{
             mostrarRecetas(a);
         }
+        
     }
     public boolean comprobar(String a)throws SQLException{
         
