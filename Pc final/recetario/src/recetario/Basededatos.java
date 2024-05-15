@@ -78,8 +78,7 @@ public class Basededatos {
             }            
             return true;
         } else {
-            System.out.println("No existe dicha receta. Si no conoce las recetas existentes vaya al apartado de buscar"
-                    + "recetas");
+            System.out.println("No existe dicha receta. Si no conoce las recetas existentes vaya al apartado de buscar recetas");
             return false;
             
         }
