@@ -12,15 +12,15 @@ import java.util.Scanner;
  * @author EAG
  */
 public class Basededatos {
-   
+    /*
     final String url = "jdbc:oracle:thin:@//localhost:1521/xe";
     final String username = "aula";
     final String pass = "aula";
-    /*
+    */
     final String url = "jdbc:oracle:thin:@//localhost:1521/xe";
     final String username = "nasaro";
     final String pass = "1234";
-    */
+    
     private Connection con;
     
     public Basededatos() throws ClassNotFoundException, SQLException {
@@ -31,6 +31,7 @@ public class Basededatos {
     public void insertar(String a)throws SQLException {
         Statement st = con.createStatement();
         st.executeUpdate("insert into registro values('"+a+"', s ,d,f,f");
+        
     }
     public ResultSet consulta(String a) throws SQLException{
         Statement st = con.createStatement();
@@ -92,20 +93,15 @@ public class Basededatos {
         }
         skip();
     }
-    public void modificarRecetas(String a)throws SQLException{
-        System.out.println("Recetas que puedes modificar");
-        if (a.equals("admin")) {
-            ResultSet rs = consulta("select * from recetas ");
-            ResultSet nC = consulta("select count(*) from recetas");
-            nC.next();
-            while (rs.next()) {
-                System.out.println(rs.getString(2));
-            }
-            skip();
-        }else{
-            mostrarRecetas(a);
-        }
-        
+    public void modificarRecetas(String a,String user,String rece)throws SQLException{
+        Scanner sc =new Scanner (System.in);
+        String nuevo;
+        System.out.print("Introduce el nuevo "+a+" : ");
+        nuevo=sc.nextLine();
+        Statement st = con.createStatement();
+        String sql = "UPDATE recetas SET " + a + " = '" + nuevo + "' WHERE usuario = '" + user + "' and nombre='"+rece+"'";
+        int rowsUpdated = st.executeUpdate(sql);
+        System.out.println(rowsUpdated + " filas actualizadas.");
     }
     public boolean comprobar(String a)throws SQLException{
         

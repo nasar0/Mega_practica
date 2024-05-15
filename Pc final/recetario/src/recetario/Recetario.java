@@ -9,9 +9,6 @@ import java.io.*;
 import java.sql.*;
 import java.util.Scanner;
 
-
-
-
 /**
  *
  * @author EAG
@@ -38,13 +35,13 @@ public class Recetario {
         boolean comprobar=false;
         
         char c='a';
-        
+        /*
         ResultSet rs = bd.consulta("select * from recetas");
         ResultSet nC = bd.consulta("select count(*) from recetas");
         nC.next();
         while(rs.next()){
             System.out.println(rs.getString(2));
-        }
+        }*/
         do {
             System.out.println("1.Iniciar sesion");
             System.out.println("2.Registrarse");
@@ -110,8 +107,7 @@ public class Recetario {
                                     } while (!a);
 
                                     break;
-                                case 2:
-                                        bd.mostrarRecetas(user);
+                                case 2:                               
                                         System.out.println("Cual de sea modificar ");
                                         rece = sc.nextLine();
                                         cb=false;
@@ -119,14 +115,14 @@ public class Recetario {
                                         if (a) {
                                             do {
                                                 System.out.print("Que desea modificar: ");
-                                                modf=sc.nextLine();
+                                                modf=sc.nextLine().toUpperCase();
                                                 comprobar=bd.comprobar(modf);
                                             } while (!comprobar);
    
                                         }else{
                                             System.out.println("No encontrada");
                                         }
-                                        
+                                        bd.modificarRecetas(modf,user,rece);
                                             
                                     break;
                                 case 3:
