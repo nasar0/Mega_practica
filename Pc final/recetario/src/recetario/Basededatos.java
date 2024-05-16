@@ -46,7 +46,6 @@ public class Basededatos {
                 email=sc.nextLine();
                 
                 res = st.executeUpdate("insert into usuarios values('"+a+"','"+pas+"','"+email+"','2')"); 
-                System.out.println(res);
             }catch(Exception e){
                 System.out.println("Los valores introducidos no son validos o son existentes");
             }
