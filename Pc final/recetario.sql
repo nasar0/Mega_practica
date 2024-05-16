@@ -7,7 +7,7 @@ DROP TABLE usuarios;
 CREATE TABLE usuarios (
     usuario VARCHAR2(20) PRIMARY KEY,
     pass VARCHAR2(20),
-    email VARCHAR2(30),
+    email VARCHAR2(30) unique,
     tipo NUMBER(1,0) CHECK (tipo IN (1,2))
 );
 
@@ -37,16 +37,16 @@ CREATE TABLE PasosPreparacion (
     CONSTRAINT fk_Recetas_PP FOREIGN KEY (ID) REFERENCES Recetas(ID)
 );
 
-INSERT INTO usuarios VALUES ('admin','admin',null,1);
+INSERT INTO usuarios VALUES ('1','1',null,1);
 
-INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES('Tarta de manzana de Hora de Aventuras', 'Una deliciosa tarta de manzana inspirada en el mundo de Hora de Aventuras.', 'Hora de Aventuras', 60, 'Intermedia', 350,'admin');
-INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Ramen de Naruto', 'Un plato de ramen caliente y reconfortante, al estilo del ramen que Naruto Uzumaki adora.', 'Naruto', 30, 'Facil', 300,'admin');
-INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Cangreburgers de Bob Esponja', 'Las famosas cangreburgers de Bob Esponja, tan deliciosas como en el Crustaceo Crujiente!', 'Bob Esponja', 45, 'Intermedia', 400,'admin');
-INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES('Pudin de Chocolate de Billy y Mandy', 'Un delicioso pudin de chocolate que te transportara al mundo sombrio y comico de Billy y Mandy.', 'Las sombrias aventuras de Billy y Mandy', 45, 'Intermedia', 400,'admin');
-INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES('Galletas de Jengibre de Shrek', 'Deliciosas galletas con forma de personajes de Shrek, perfectas para cualquier ocasion.', 'Shrek', 60, 'Facil', 250,'admin');
-INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Pastel de Zanahoria de Bugs Bunny', 'Un delicioso pastel de zanahoria con glaseado, favorito del iconico Bugs Bunny.', 'Looney Tunes', 50, 'Intermedia', 400,'admin');
-INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Sopa de Piedras de Pedro y el Lobo', 'Una sopa reconfortante y llena de sabor, inspirada en el cuento clasico de Pedro y el Lobo.', 'Pedro y el Lobo', 45, 'Facil', 200 ,'admin');
-INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Ratatouille de Remy', 'Un plato tradicional frances preparado con los mejores ingredientes y el toque especial del talentoso Remy.', 'Ratatouille', 45, 'Intermedia', 300,'admin');
+INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES('Tarta de manzana de Hora de Aventuras', 'Una deliciosa tarta de manzana inspirada en el mundo de Hora de Aventuras.', 'Hora de Aventuras', 60, 'Intermedia', 350,'1');
+INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Ramen de Naruto', 'Un plato de ramen caliente y reconfortante, al estilo del ramen que Naruto Uzumaki adora.', 'Naruto', 30, 'Facil', 300,'1');
+INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Cangreburgers de Bob Esponja', 'Las famosas cangreburgers de Bob Esponja, tan deliciosas como en el Crustaceo Crujiente!', 'Bob Esponja', 45, 'Intermedia', 400,'1');
+INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES('Pudin de Chocolate de Billy y Mandy', 'Un delicioso pudin de chocolate que te transportara al mundo sombrio y comico de Billy y Mandy.', 'Las sombrias aventuras de Billy y Mandy', 45, 'Intermedia', 400,'1');
+INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES('Galletas de Jengibre de Shrek', 'Deliciosas galletas con forma de personajes de Shrek, perfectas para cualquier ocasion.', 'Shrek', 60, 'Facil', 250,'1');
+INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Pastel de Zanahoria de Bugs Bunny', 'Un delicioso pastel de zanahoria con glaseado, favorito del iconico Bugs Bunny.', 'Looney Tunes', 50, 'Intermedia', 400,'1');
+INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Sopa de Piedras de Pedro y el Lobo', 'Una sopa reconfortante y llena de sabor, inspirada en el cuento clasico de Pedro y el Lobo.', 'Pedro y el Lobo', 45, 'Facil', 200 ,'1');
+INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Ratatouille de Remy', 'Un plato tradicional frances preparado con los mejores ingredientes y el toque especial del talentoso Remy.', 'Ratatouille', 45, 'Intermedia', 300,'1');
 
 INSERT INTO Ingredientes VALUES ('Manzanas', '4 unidades', 1);
 INSERT INTO Ingredientes VALUES ('Fideos de ramen', '1 paquete', 2);
