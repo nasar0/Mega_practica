@@ -12,15 +12,15 @@ import java.util.Scanner;
  * @author EAG
  */
 public class Basededatos {
-    
+    /*
     final String url = "jdbc:oracle:thin:@//localhost:1521/xe";
     final String username = "aula";
     final String pass = "aula";
-   /*
+   */
     final String url = "jdbc:oracle:thin:@//localhost:1521/xe";
     final String username = "nasaro";
     final String pass = "1234";
-    */
+   
     private Connection con;
     
     public Basededatos() throws ClassNotFoundException, SQLException {
@@ -222,24 +222,30 @@ public class Basededatos {
         }  
     }
     public void crearReceta(String user)throws SQLException{
-        Scanner sc =new Scanner (System.in);
-        System.out.print("Nombre de la receta: ");
-        String n =sc.nextLine();
-        System.out.print("Descripcion de la receta: ");
-        String de =sc.nextLine();
-        System.out.print("Dibujo de la receta: ");
-        String di =sc.nextLine();
-        System.out.print("Tiempo de la receta: ");
-        String t =sc.nextLine();
-        System.out.print("Dificultad de la receta: ");
-        String dif =sc.nextLine();
-        System.out.print("Calorias de la receta: ");
-        String c =sc.nextLine();
+        Scanner sc = new Scanner(System.in);
         Statement st = con.createStatement();
-        int res = st.executeUpdate("insert into recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) values('"+n+"','"+de+"','"+di+"','"+t+"','"+dif+"','"+c+"','"+user+"')");
-        ResultSet rs=consulta("select id from recetas where nombre='"+n+"'");
-        int id=rs.getInt(1);
-                
+        
+        System.out.print("Nombre de la receta: ");
+        String n = sc.nextLine();
+        System.out.print("Descripcion de la receta: ");
+        String de = sc.nextLine();
+        System.out.print("Dibujo de la receta: ");
+        String di = sc.nextLine();
+        System.out.print("Tiempo de la receta: ");
+        String t = sc.nextLine();
+        System.out.print("Dificultad de la receta: ");
+        String dif = sc.nextLine();
+        System.out.print("Calorias de la receta: ");
+        String c = sc.nextLine();
+        try {
+            st = con.createStatement();
+            int res = st.executeUpdate("INSERT INTO recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario)VALUES('" + n + "','" + de + "','" + di + "','" + t + "','" + dif + "'," + c + ",'" + user + "')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            System.out.println("RECETA CREADA");
+        }
+       
+        
     }
-    
 }

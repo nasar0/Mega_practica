@@ -73,21 +73,7 @@ public class Recetario {
                         tipo = bd.tipoUsuario(user, pass);
                         do {
                         if (tipo == 1) {
-                            System.out.println("1.Buscar recetas");
-                            System.out.println("2.Modificar recetas");
-                            System.out.println("3.Ver recetas");
-                            System.out.println("4.Ver usuarios");
-                            System.out.println("5.Cerrar sesion");
-                            op=0;
-                            do {
-                                try {
-                                    op = sc.nextInt();
-                                } catch (Exception e) {
-                                    System.out.println("Debe elegir uno de los valores que aparecen en pantalla");
-                                } finally {
-                                    sc.nextLine();
-                                }
-                            } while (op < 1 || op > 5);
+                            op=menu(tipo);
                             
                             switch (op) {
                                 case 1:
@@ -127,22 +113,8 @@ public class Recetario {
                                     break;
                             }
                         } else if (tipo == 2) {
-                            System.out.println("1.Buscar recetas");
-                            System.out.println("2.Modificar recetas");
-                            System.out.println("3.Ver recetas");
-                            System.out.println("4.Crear receta");
-                            System.out.println("5.Cerrar sesion");
-                            op=0;
-                            do {
-                                try {
-                                    op = sc.nextInt();
-                                } catch (Exception e) {
-                                    System.out.println("Debe elegir uno de los valores que aparecen en pantalla");
-                                } finally {
-                                    sc.nextLine();
-                                }
-                            } while (op < 1 || op > 5);
                             
+                            op=menu(tipo);
                             switch (op) {
                                 case 1:
                                     do {
@@ -200,6 +172,44 @@ public class Recetario {
         } while (op!=4);
         
     } 
-   
+ public static int menu(int a){
+    Scanner sc =new Scanner (System.in);
+    int op=0;
+    if (a==1) {
+       System.out.println("1.Buscar recetas");
+       System.out.println("2.Modificar recetas");
+       System.out.println("3.Ver recetas");
+       System.out.println("4.Ver usuarios");
+       System.out.println("5.Cerrar sesion");
+       op=0;
+       do {
+           try {
+               op = sc.nextInt();
+           } catch (Exception e) {
+               System.out.println("Debe elegir uno de los valores que aparecen en pantalla");
+           } finally {
+               sc.nextLine();
+           }
+       } while (op < 1 || op > 5);
+    }else if(a==2){
+        System.out.println("1.Buscar recetas");
+        System.out.println("2.Modificar recetas");
+        System.out.println("3.Ver recetas");
+        System.out.println("4.Crear receta");
+        System.out.println("5.Cerrar sesion");
+        op=0;
+        do {
+            try {
+                op = sc.nextInt();
+            } catch (Exception e) {
+                System.out.println("Debe elegir uno de los valores que aparecen en pantalla");
+            } finally {
+                sc.nextLine();
+            }
+        } while (op < 1 || op > 5);
+    }
+    
+    return op;
+ }  
 
 }

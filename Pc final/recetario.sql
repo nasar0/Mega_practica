@@ -39,7 +39,7 @@ CREATE TABLE PasosPreparacion (
 
 INSERT INTO usuarios VALUES ('1','1',null,1);
 
-INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES('Tarta de manzana de Hora de Aventuras', 'Una deliciosa tarta de manzana inspirada en el mundo de Hora de Aventuras.', 'Hora de Aventuras', 60, 'Intermedia', 350,'1');
+INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario)VALUES('Tarta de manzana de Hora de Aventuras', 'Una deliciosa tarta de manzana inspirada en el mundo de Hora de Aventuras.', 'Hora de Aventuras', 60, 'Intermedia', 350,'1');
 INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Ramen de Naruto', 'Un plato de ramen caliente y reconfortante, al estilo del ramen que Naruto Uzumaki adora.', 'Naruto', 30, 'Facil', 300,'1');
 INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Cangreburgers de Bob Esponja', 'Las famosas cangreburgers de Bob Esponja, tan deliciosas como en el Crustaceo Crujiente!', 'Bob Esponja', 45, 'Intermedia', 400,'1');
 INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES('Pudin de Chocolate de Billy y Mandy', 'Un delicioso pudin de chocolate que te transportara al mundo sombrio y comico de Billy y Mandy.', 'Las sombrias aventuras de Billy y Mandy', 45, 'Intermedia', 400,'1');
@@ -101,7 +101,3 @@ INSERT INTO PasosPreparacion VALUES (5, 'Añadir los tomates picados y cocinar h
 INSERT INTO PasosPreparacion VALUES (6, 'Condimentar con sal, pimienta y albahaca fresca picada.', 8);
 INSERT INTO PasosPreparacion VALUES (7, 'Servir caliente como guarnicion o plato principal.', 8);
 commit;
-
-select p.* from pasospreparacion p ,recetas r where r.id =p.id and r.nombre='Ramen de Naruto';
-ResultSet res = st.executeUpdate("insert into recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) values('"+n+"','"+de+"','"+di+"','"+t+"','"+dif+"','"+c+"','"+user+"',)"); 
-         
