@@ -87,7 +87,7 @@ public class Recetario {
                                 } finally {
                                     sc.nextLine();
                                 }
-                            } while (op < 1 && op > 5);
+                            } while (op < 1 || op > 5);
                             
                             switch (op) {
                                 case 1:
@@ -95,22 +95,14 @@ public class Recetario {
                                         System.out.println("Dime la recetas que quieres buscar: ");
                                         rece = sc.nextLine();
                                         rece = rece.split("\n")[0];
-                                        System.out.println("Quieres ver la informacion de la receta¿?(Si/No)");
-                                        c=sc.next().toLowerCase().charAt(0);
-                                        if (c=='s') {
-                                            cb=true;
-                                        }else if (c=='n'){
-                                            cb=false;
-                                        }
-                                        a = bd.buscarRecetas(rece,cb);
+                                        a = bd.buscarRecetas(rece);
                                     } while (!a);
 
                                     break;
                                 case 2:                               
                                         System.out.println("Cual de sea modificar ");
                                         rece = sc.nextLine();
-                                        cb=false;
-                                        a = bd.buscarRecetas(rece,cb);
+      
                                         if (a) {
                                             do {
                                                 System.out.print("Que desea modificar: ");
@@ -125,7 +117,6 @@ public class Recetario {
                                             
                                     break;
                                 case 3:
-                                    cb=false;
                                     bd.mostrarRecetas(user);
                                     break;
                                 case 4:
@@ -139,7 +130,8 @@ public class Recetario {
                             System.out.println("1.Buscar recetas");
                             System.out.println("2.Modificar recetas");
                             System.out.println("3.Ver recetas");
-                            System.out.println("4.Cerrar sesion");
+                            System.out.println("4.Crear receta");
+                            System.out.println("5.Cerrar sesion");
                             op=0;
                             do {
                                 try {
@@ -149,7 +141,7 @@ public class Recetario {
                                 } finally {
                                     sc.nextLine();
                                 }
-                            } while (op < 1 && op > 5);
+                            } while (op < 1 || op > 5);
                             
                             switch (op) {
                                 case 1:
@@ -157,22 +149,14 @@ public class Recetario {
                                         System.out.println("Dime la recetas que quieres buscar: ");
                                         rece = sc.nextLine();
                                         rece = rece.split("\n")[0];
-                                        System.out.println("Quieres ver la informacion de la receta¿?(Si/No)");
-                                        c=sc.next().toLowerCase().charAt(0);
-                                        if (c=='s') {
-                                            cb=true;
-                                        }else if (c=='n'){
-                                            cb=false;
-                                        }
-                                        a = bd.buscarRecetas(rece,cb);
+                                        a = bd.buscarRecetas(rece);
                                     } while (!a);
 
                                     break;
                                 case 2:                               
                                         System.out.println("Cual de sea modificar ");
                                         rece = sc.nextLine();
-                                        cb=false;
-                                        a = bd.buscarRecetas(rece,cb);
+                                        
                                         if (a) {
                                             do {
                                                 System.out.print("Que desea modificar: ");
@@ -187,15 +171,17 @@ public class Recetario {
                                             
                                     break;
                                 case 3:
-                                    cb=false;
                                     bd.mostrarRecetas(user);
                                     break;
                                 case 4:
+                                    bd.crearReceta(user);
+                                    break;
+                                case 5:
                                     System.out.println("Cerrando sesion......");
                                     break;
                             }
                         }
-                    } while (op!=4);
+                    } while (op!=5);
                     
                     break;
                 case 2:

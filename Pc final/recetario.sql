@@ -102,3 +102,6 @@ INSERT INTO PasosPreparacion VALUES (6, 'Condimentar con sal, pimienta y albahac
 INSERT INTO PasosPreparacion VALUES (7, 'Servir caliente como guarnicion o plato principal.', 8);
 commit;
 
+select p.* from pasospreparacion p ,recetas r where r.id =p.id and r.nombre='Ramen de Naruto';
+ResultSet res = st.executeUpdate("insert into recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) values('"+n+"','"+de+"','"+di+"','"+t+"','"+dif+"','"+c+"','"+user+"',)"); 
+         

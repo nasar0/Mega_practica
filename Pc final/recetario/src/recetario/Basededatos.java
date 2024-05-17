@@ -79,7 +79,7 @@ public class Basededatos {
         return num;
     }
     
-    public boolean buscarRecetas(String a,boolean b) throws SQLException {
+    public boolean buscarRecetas(String a) throws SQLException {
         int num = 0;
         try {
             ResultSet nC = consulta("select count(*) from Recetas where nombre='" + a+"'");
@@ -92,21 +92,44 @@ public class Basededatos {
             ResultSet rs = consulta("select * from recetas where nombre='" + a+"'");
             ResultSet nC = consulta("select count(*) from recetas");
             nC.next();
+            skip();
             int numC=rs.getMetaData().getColumnCount();
-            if (b) {
-                while(rs.next()){
-                for (int i = 2; i <=numC; i++) {
+            System.out.println("Descripcion de la receta: ");
+            while(rs.next()){
+                for (int i = 2; i <=numC ; i++) {
+                    String columnName = rs.getMetaData().getColumnName(i);
+                    if (columnName.equals("TIEMPO")) {
+                        System.out.println(columnName + ": " + rs.getString(i)+" minutos");
+                    }else{
+                        System.out.println(columnName + ": " + rs.getString(i));
+                    }
+                }
+            } 
+            System.out.println("");
+            System.out.println("Ingredientes: ");
+            rs=consulta("select i.* from ingredientes i ,recetas r where r.id =i.id and r.nombre='" + a+"'");
+            numC=rs.getMetaData().getColumnCount();
+            while (rs.next()) {
+                for (int i = 2; i <= numC-1; i++) {
                     String columnName = rs.getMetaData().getColumnName(i);
                     System.out.println(columnName+": "+rs.getString(i));
                 }
-                skip();
-                }   
-            }            
+            }
+            System.out.println("");
+            System.out.println("Pasos de preparacion");
+            rs=consulta("select p.* from pasospreparacion p ,recetas r where r.id =p.id and r.nombre='" + a+"'");
+            numC=rs.getMetaData().getColumnCount();
+            while (rs.next()) {
+                for (int i = 2; i <= numC-1; i++) {
+                    String columnName = rs.getMetaData().getColumnName(i);
+                    System.out.println(columnName + ": " + rs.getString(i));
+                }
+            }
+            skip();            
             return true;
         } else {
             System.out.println("No existe dicha receta. Si no conoce las recetas existentes vaya al apartado de buscar recetas");
             return false;
-            
         }
     }
     
@@ -151,7 +174,9 @@ public class Basededatos {
         }else{
             String sql = "UPDATE recetas SET " + a + " = '" + nuevo + "' WHERE usuario = '" + user + "' and nombre='"+rece+"'";
             int rowsUpdated = st.executeUpdate(sql);
-            System.out.println(rowsUpdated + " filas actualizadas.");
+            if (rowsUpdated==0) {
+                System.out.println("No puede modificar esa receta porque no es suya");
+            }
         }
         
     }
@@ -196,4 +221,25 @@ public class Basededatos {
             cont++;
         }  
     }
+    public void crearReceta(String user)throws SQLException{
+        Scanner sc =new Scanner (System.in);
+        System.out.print("Nombre de la receta: ");
+        String n =sc.nextLine();
+        System.out.print("Descripcion de la receta: ");
+        String de =sc.nextLine();
+        System.out.print("Dibujo de la receta: ");
+        String di =sc.nextLine();
+        System.out.print("Tiempo de la receta: ");
+        String t =sc.nextLine();
+        System.out.print("Dificultad de la receta: ");
+        String dif =sc.nextLine();
+        System.out.print("Calorias de la receta: ");
+        String c =sc.nextLine();
+        Statement st = con.createStatement();
+        int res = st.executeUpdate("insert into recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) values('"+n+"','"+de+"','"+di+"','"+t+"','"+dif+"','"+c+"','"+user+"')");
+        ResultSet rs=consulta("select id from recetas where nombre='"+n+"'");
+        int id=rs.getInt(1);
+                
+    }
+    
 }
