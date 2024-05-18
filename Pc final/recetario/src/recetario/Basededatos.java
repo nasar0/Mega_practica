@@ -82,14 +82,14 @@ public class Basededatos {
     public boolean buscarRecetas(String a) throws SQLException {
         int num = 0;
         try {
-            ResultSet nC = consulta("select count(*) from Recetas where nombre='" + a+"'");
+            ResultSet nC = consulta("SELECT distinct count(*) FROM Recetas r JOIN etiquetas e ON r.id = e.id WHERE r.nombre ='"+a+"' OR e.nombre ='"+a+"'");
             nC.next();
             num = nC.getInt(1);
         } catch (Exception e) {
-            
+            System.out.println("no existe raceta");
         }
-        if (num == 1) {
-            ResultSet rs = consulta("select * from recetas where nombre='" + a+"'");
+        if (num == 2) {
+            ResultSet rs = consulta("select distinct * from recetas r,etiquetas e where e.id=r.id and e.nombre='"+a+"' or r.nombre='" + a+"'");
             ResultSet nC = consulta("select count(*) from recetas");
             nC.next();
             skip();
@@ -107,7 +107,7 @@ public class Basededatos {
             } 
             System.out.println("");
             System.out.println("Ingredientes: ");
-            rs=consulta("select i.* from ingredientes i ,recetas r where r.id =i.id and r.nombre='" + a+"'");
+            rs=consulta("select distinct i.* from ingredientes i ,recetas r,etiquetas e where r.id =i.id and e.id=r.id  and e.nombre='"+a+"' or r.nombre='" + a+"'");
             numC=rs.getMetaData().getColumnCount();
             while (rs.next()) {
                 for (int i = 2; i <= numC-1; i++) {
@@ -117,7 +117,7 @@ public class Basededatos {
             }
             System.out.println("");
             System.out.println("Pasos de preparacion");
-            rs=consulta("select p.* from pasospreparacion p ,recetas r where r.id =p.id and r.nombre='" + a+"'");
+            rs=consulta("select distinct p.* from pasospreparacion p ,recetas r, etiquetas e  where r.id =p.id and e.id=r.id and e.nombre='"+a+"' or r.nombre='" + a+"'");
             numC=rs.getMetaData().getColumnCount();
             while (rs.next()) {
                 for (int i = 2; i <= numC-1; i++) {
@@ -150,11 +150,15 @@ public class Basededatos {
             }  
         }else if (op==2) {
             ResultSet rs = consulta("select * from recetas WHERE usuario =" + user );
-            /*ResultSet nC = consulta("select count(*) from recetas");
-            nC.next();*/
             while (rs.next()) {
                 System.out.println(rs.getString(2));
-            }  
+            }
+            System.out.println();
+            System.out.println("Aqui estan sus respectivas etiquetas: ");
+            rs = consulta("select e.* from etiquetas e,usuarios u,recetas r WHERE r.id=e.id and u.usuario=r.usuario and u.usuario="+user);
+            while (rs.next()) {
+                System.out.println(rs.getString(1));
+            }
         }
         
         skip();
@@ -245,7 +249,6 @@ public class Basededatos {
         }finally{
             System.out.println("RECETA CREADA");
         }
-       
         
     }
 }

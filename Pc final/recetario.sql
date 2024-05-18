@@ -36,6 +36,11 @@ CREATE TABLE PasosPreparacion (
     ID NUMBER(2,0),
     CONSTRAINT fk_Recetas_PP FOREIGN KEY (ID) REFERENCES Recetas(ID)
 );
+Create table etiquetas(
+    nombre varchar2(30),
+    id number(2,0),
+    CONSTRAINT fk_Recetas_E FOREIGN KEY (ID) REFERENCES Recetas(ID)
+);
 
 INSERT INTO usuarios VALUES ('1','1',null,1);
 
@@ -47,6 +52,19 @@ INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario
 INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Pastel de Zanahoria de Bugs Bunny', 'Un delicioso pastel de zanahoria con glaseado, favorito del iconico Bugs Bunny.', 'Looney Tunes', 50, 'Intermedia', 400,'1');
 INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Sopa de Piedras de Pedro y el Lobo', 'Una sopa reconfortante y llena de sabor, inspirada en el cuento clasico de Pedro y el Lobo.', 'Pedro y el Lobo', 45, 'Facil', 200 ,'1');
 INSERT INTO Recetas(Nombre,Descripcion,Dibujo,Tiempo,Dificultad,Calorias,usuario) VALUES ('Ratatouille de Remy', 'Un plato tradicional frances preparado con los mejores ingredientes y el toque especial del talentoso Remy.', 'Ratatouille', 45, 'Intermedia', 300,'1');
+
+INSERT INTO etiquetas VALUES ('Tarta de manzana', 1);
+INSERT INTO etiquetas VALUES ('Ramen', 2);
+INSERT INTO etiquetas VALUES ('Cangreburgers', 3);
+INSERT INTO etiquetas VALUES ('Pudin', 4);
+INSERT INTO etiquetas VALUES ('Galletas', 5);
+INSERT INTO etiquetas VALUES ('Pastel de Zanahoria', 6);
+INSERT INTO etiquetas VALUES ('Sopa', 7);
+INSERT INTO etiquetas VALUES ('Ratatouille',8);
+
+
+
+
 
 INSERT INTO Ingredientes VALUES ('Manzanas', '4 unidades', 1);
 INSERT INTO Ingredientes VALUES ('Fideos de ramen', '1 paquete', 2);
@@ -101,3 +119,7 @@ INSERT INTO PasosPreparacion VALUES (5, 'Añadir los tomates picados y cocinar h
 INSERT INTO PasosPreparacion VALUES (6, 'Condimentar con sal, pimienta y albahaca fresca picada.', 8);
 INSERT INTO PasosPreparacion VALUES (7, 'Servir caliente como guarnicion o plato principal.', 8);
 commit;
+
+
+
+select * from recetas r,etiquetas e where e.id=r.id and e.nombre= and r.nombre=
