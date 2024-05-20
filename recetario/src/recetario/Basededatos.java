@@ -135,6 +135,7 @@ public class Basededatos {
                         System.out.println(columnName + ": " + rs2.getString(i));
                     }
                 }
+                System.out.println("*******************************");
             skip(); 
             } 
             
