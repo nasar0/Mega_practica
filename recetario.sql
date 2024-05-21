@@ -1,7 +1,7 @@
-DROP TABLE PasosPreparacion;
-DROP TABLE Ingredientes;
-DROP TABLE Recetas;
-DROP TABLE usuarios;
+DROP TABLE PasosPreparacion cascade CONSTRAINTS;
+DROP TABLE Ingredientes cascade CONSTRAINTS;
+DROP TABLE Recetas cascade CONSTRAINTS;
+DROP TABLE usuarios cascade CONSTRAINTS;
 
 
 CREATE TABLE usuarios (
@@ -122,4 +122,6 @@ commit;
 
 
 
-select * from recetas r,etiquetas e where e.id=r.id and e.nombre= and r.nombre=
+select r.* from recetas r,usuarios u where r.usuario=u.usuario and u.usuario='1';
+
+select distinct * from recetas r,etiquetas e where e.id=r.id and e.nombre='Ramen' or r.nombre= 'Ramen';

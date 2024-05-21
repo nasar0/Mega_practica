@@ -87,7 +87,7 @@ public class Basededatos {
                 nC.next();
                 num = nC.getInt(1);
             } catch (Exception e) {
-                System.out.println("no existe raceta");
+                System.out.println("no existe receta");
             }   
         }else{
             num=1;
@@ -96,15 +96,16 @@ public class Basededatos {
         ResultSet rs;
         if (num != 0) {
             if (b) {
-                rs = consulta("select distinct * from recetas r,etiquetas e where e.id=r.id and e.nombre='"+a+"' or r.nombre= '" + a+"'");
+                rs = consulta("select distinct r.* from recetas r,etiquetas e where e.id=r.id and e.nombre='"+a+"' or r.nombre= '" + a+"'");
             }else{
                 rs = consulta("select distinct r.* from recetas r,usuarios u where r.usuario=u.usuario and u.usuario='"+us+"'");
             }
             
             skip();
             int numC=rs.getMetaData().getColumnCount();
-            System.out.println("Descripcion de la receta: ");
+            
             while(rs.next()){
+                System.out.println("Descripcion de la receta: ");
                 for (int i = 2; i <=numC ; i++) {
                     String columnName = rs.getMetaData().getColumnName(i);
                     if (columnName.equals("TIEMPO")) {
@@ -136,24 +137,16 @@ public class Basededatos {
                     }
                 }
                 System.out.println("*******************************");
-            skip(); 
+                skip(); 
             } 
             
             
             /****
-            
-            
-            
-            
+
             *       YA TE FUNCIONA, AHORA TE LO MIRAS Y ME LO COMENTAS
-            
-            
-            
-            
-            
-            
+
             ****/
-                       
+            
             return true;
         } else {
             System.out.println("No existe dicha receta. Si no conoce las recetas existentes vaya al apartado de buscar recetas");
@@ -163,11 +156,14 @@ public class Basededatos {
     
     public void mostrarRecetas(String user)throws SQLException{
         Scanner sc =new Scanner (System.in);
-        int op;
-        do {
-            System.out.println("¿Desea ver todas las recetas o solo las suyas?(1/2)");
-            op=sc.nextInt();
-        } while (op!=1 && op!=2);
+        int op=1;
+        if (user!=null) {
+             do {
+                System.out.println("¿Desea ver todas las recetas o solo las suyas?(1/2)");
+                op=sc.nextInt();
+            } while (op!=1 && op!=2);
+        }
+       
         
         if (op==1) {
             ResultSet rs = consulta("select * from recetas");

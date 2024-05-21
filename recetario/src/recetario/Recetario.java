@@ -46,7 +46,7 @@ public class Recetario {
         do {
             System.out.println("1.Iniciar sesion");
             System.out.println("2.Registrarse");
-            System.out.println("3.Ver recetas");
+            System.out.println("3.Ver");
             System.out.println("4.Salir");
             do {
                 try {
@@ -183,6 +183,14 @@ public class Recetario {
                     bd.Registro();
                     break;
                 case 3:
+                    int r=menu(3);
+                    if(r==1){
+                        System.out.println("Dime la receta que quieres buscar¿?");
+                        String nom=sc.nextLine();
+                        bd.buscarRecetas(nom, true, null);
+                    }else if(r==2){
+                        bd.mostrarRecetas(null);
+                    }
                     break;
                 case 4:
                     System.out.println("Hasta pronto <<<<<<3");
@@ -229,6 +237,20 @@ public class Recetario {
                 sc.nextLine();
             }
         } while (op < 1 || op > 5);
+    }else{
+        System.out.println("1.Buscar recetas");
+        System.out.println("2.Ver recetas");
+        System.out.println("3.Salir");
+        op=0;
+        do {
+            try {
+                op = sc.nextInt();
+            } catch (Exception e) {
+                System.out.println("Debe elegir uno de los valores que aparecen en pantalla");
+            } finally {
+                sc.nextLine();
+            }
+        } while (op < 1 || op > 3);
     }
     
     return op;
