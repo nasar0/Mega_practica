@@ -86,11 +86,11 @@ public class Recetario {
                                             System.out.println("Dime la recetas que quieres buscar: ");
                                             rece = sc.nextLine();
                                             rece = rece.split("\n")[0];
-                                            a = bd.buscarRecetas(rece, BREC, user);
+                                            a = bd.mostrarRecetas(rece, BREC, user);
                                         } while (!a);
                                     }else if(brec=='u'){
                                         BREC=false;
-                                        a = bd.buscarRecetas(rece, BREC, user);
+                                        a = bd.mostrarRecetas(rece, BREC, user);
                                     }
                                     
 
@@ -113,7 +113,7 @@ public class Recetario {
                                             
                                     break;
                                 case 3:
-                                    bd.mostrarRecetas(user);
+                                    bd.buscarRecetas(user);
                                     break;
                                 case 4:
                                     bd.mostrarUsuarios(); 
@@ -140,10 +140,10 @@ public class Recetario {
                                         System.out.println("Dime la recetas que quieres buscar: ");
                                         rece = sc.nextLine();
                                         rece = rece.split("\n")[0];
-                                        a = bd.buscarRecetas(rece,BREC,user);
+                                        a = bd.mostrarRecetas(rece,BREC,user);
                                         } while (!a); 
                                     }else{
-                                        a = bd.buscarRecetas(rece,BREC,user);
+                                        a = bd.mostrarRecetas(rece,BREC,user);
                                     }
 
                                     break;
@@ -165,7 +165,7 @@ public class Recetario {
                                             
                                     break;
                                 case 3:
-                                    bd.mostrarRecetas(user);
+                                    bd.buscarRecetas(user);
                                     break;
                                 case 4:
                                     bd.crearReceta(user);
@@ -187,9 +187,9 @@ public class Recetario {
                     if(r==1){
                         System.out.println("Dime la receta que quieres buscar¿?");
                         String nom=sc.nextLine();
-                        bd.buscarRecetas(nom, true, null);
+                        bd.mostrarRecetas(nom, true, null);
                     }else if(r==2){
-                        bd.mostrarRecetas(null);
+                        bd.buscarRecetas(null);
                     }
                     break;
                 case 4:
@@ -206,9 +206,9 @@ public class Recetario {
     Scanner sc =new Scanner (System.in);
     int op=0;
     if (a==1) {
-       System.out.println("1.Buscar recetas");
+       System.out.println("1.Ver recetas");
        System.out.println("2.Modificar recetas");
-       System.out.println("3.Ver recetas");
+       System.out.println("3.Buscar recetas");
        System.out.println("4.Ver usuarios");
        System.out.println("5.Cerrar sesion");
        op=0;
@@ -222,9 +222,9 @@ public class Recetario {
            }
        } while (op < 1 || op > 5);
     }else if(a==2){
-        System.out.println("1.Buscar recetas");
+        System.out.println("1.Ver recetas");
         System.out.println("2.Modificar recetas");
-        System.out.println("3.Ver recetas");
+        System.out.println("3.Buscar recetas");
         System.out.println("4.Crear receta");
         System.out.println("5.Cerrar sesion");
         op=0;
@@ -238,8 +238,8 @@ public class Recetario {
             }
         } while (op < 1 || op > 5);
     }else{
-        System.out.println("1.Buscar recetas");
-        System.out.println("2.Ver recetas");
+        System.out.println("1.Ver recetas");
+        System.out.println("2.Buscar recetas");
         System.out.println("3.Salir");
         op=0;
         do {

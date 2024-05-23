@@ -79,7 +79,7 @@ public class Basededatos {
         return num;
     }
     
-    public boolean buscarRecetas(String a,boolean b,String us) throws SQLException {
+    public boolean mostrarRecetas(String a,boolean b,String us) throws SQLException {
         int num = 0;
         if (b) {
             try {
@@ -139,7 +139,9 @@ public class Basededatos {
                 System.out.println("*******************************");
                 skip(); 
             } 
-            
+            if (b) {
+                puntuarReceta(a);
+            }
             
             /****
 
@@ -154,7 +156,7 @@ public class Basededatos {
         }
     }
     
-    public void mostrarRecetas(String user)throws SQLException{
+    public void buscarRecetas(String user)throws SQLException{
         Scanner sc =new Scanner (System.in);
         int op=1;
         if (user!=null) {
@@ -170,7 +172,12 @@ public class Basededatos {
             /*ResultSet nC = consulta("select count(*) from recetas");
             nC.next();*/
             while (rs.next()) {
-                System.out.println(rs.getString(2));
+                float punt=rs.getFloat(9)/rs.getFloat(10);
+                if (rs.getFloat(10) == 0) {
+                  System.out.println(rs.getString(2)+" sin puntuacion ");  
+                }else{
+                  System.out.println(rs.getString(2)+" puntuacion es :"+punt);  
+                }
             }  
         }else if (op==2) {
             ResultSet rs = consulta("select * from recetas WHERE usuario =" + user );
@@ -284,6 +291,22 @@ public class Basededatos {
         }finally{
             System.out.println("RECETA CREADA");
         }
+        ResultSet rs = consulta("select id from recetas where nombre='"+n+"'");
         
+    }
+    public void puntuarReceta(String a)throws SQLException{
+        Scanner sc = new Scanner(System.in);
+        Statement st = con.createStatement();
+        int pun;
+        System.out.println("Desea Puntuar la receta¿?(si/no)");
+        char op=sc.next().toLowerCase().charAt(0);
+        if (op=='s') {
+            do {
+                System.out.println("Puntua del 1 al 5");
+                pun=sc.nextInt();
+            } while (pun < 1 || pun > 5);
+            int res = st.executeUpdate("update recetas set puntuacion=puntuacion+"+pun+" where recetas.nombre='"+a+"'");
+            st.executeUpdate("update recetas set ngente=ngente+1 where recetas.nombre='"+a+"'");
+        }
     }
 }

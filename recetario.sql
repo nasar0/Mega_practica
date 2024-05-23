@@ -20,6 +20,8 @@ CREATE TABLE Recetas (
     Dificultad VARCHAR2(20) CHECK (Dificultad IN ('Facil', 'Intermedia', 'Dificil')),
     Calorias NUMBER(5,0),
     usuario VARCHAR2(50),
+    puntuacion number(3,0) default 0,
+    ngente number(3,0) default 0,
     FOREIGN KEY (usuario) REFERENCES usuarios(usuario)
 );
 
@@ -120,8 +122,5 @@ INSERT INTO PasosPreparacion VALUES (6, 'Condimentar con sal, pimienta y albahac
 INSERT INTO PasosPreparacion VALUES (7, 'Servir caliente como guarnicion o plato principal.', 8);
 commit;
 
-
-
-select r.* from recetas r,usuarios u where r.usuario=u.usuario and u.usuario='1';
-
-select distinct * from recetas r,etiquetas e where e.id=r.id and e.nombre='Ramen' or r.nombre= 'Ramen';
+update recetas set puntuacion=puntuacion+5 where recetas.nombre='Ramen de Naruto' or ;
+update recetas set ngente=ngente+1 where recetas.nombre='Ramen de Naruto';
