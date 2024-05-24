@@ -273,7 +273,7 @@ public class Basededatos {
         }else{
             di = null;
         }
-        
+        sc.nextLine();
         System.out.print("Tiempo de la receta: ");
         String t = sc.nextLine();
         do {
@@ -292,7 +292,26 @@ public class Basededatos {
             System.out.println("RECETA CREADA");
         }
         ResultSet rs = consulta("select id from recetas where nombre='"+n+"'");
-        
+        rs.next();
+        int id=rs.getInt(1);
+        System.out.println("Cuantos ingredientes vas a introducir ¿?");
+        int ing=sc.nextInt();
+        sc.nextLine();
+        for (int i = 0; i < ing; i++) {
+            System.out.println("Dime el nombre del ingrediente "+i+1);
+            String in=sc.nextLine();
+            System.out.println("Dime la cantidad de ese ingrediente");
+            String cant=sc.nextLine();
+            try {
+                st = con.createStatement();
+                int res =st.executeUpdate("INSERT INTO recetas Values('"+in+"','"+cant+"'"+id);           
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                System.out.println("INGREDIENTE INTRODUCIDO");
+            }
+            
+        }
     }
     public void puntuarReceta(String a)throws SQLException{
         Scanner sc = new Scanner(System.in);
