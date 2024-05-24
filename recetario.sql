@@ -121,6 +121,3 @@ INSERT INTO PasosPreparacion VALUES (5, 'Añadir los tomates picados y cocinar h
 INSERT INTO PasosPreparacion VALUES (6, 'Condimentar con sal, pimienta y albahaca fresca picada.', 8);
 INSERT INTO PasosPreparacion VALUES (7, 'Servir caliente como guarnicion o plato principal.', 8);
 commit;
-
-update recetas set puntuacion=puntuacion+5 where recetas.nombre='Ramen de Naruto' or ;
-update recetas set ngente=ngente+1 where recetas.nombre='Ramen de Naruto';
