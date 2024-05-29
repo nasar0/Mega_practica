@@ -200,7 +200,7 @@ public class Recetario {
             }
 
         } while (op!=4);
-        
+        bd.close();
     } 
  public static int menu(int a){
     Scanner sc =new Scanner (System.in);
