@@ -291,7 +291,7 @@ public class Basededatos {
         }finally{
             System.out.println("RECETA CREADA");
         }
-<<<<<<< Updated upstream:recetario/src/recetario/Basededatos.java
+
         ResultSet rs = consulta("select id from recetas where nombre='"+n+"'");
         rs.next();
         int id=rs.getInt(1);
@@ -328,9 +328,7 @@ public class Basededatos {
             int res = st.executeUpdate("update recetas set puntuacion=puntuacion+"+pun+" where recetas.nombre='"+a+"'");
             st.executeUpdate("update recetas set ngente=ngente+1 where recetas.nombre='"+a+"'");
         }
-=======
-     
->>>>>>> Stashed changes:Pc final/recetario/src/recetario/Basededatos.java
+
     }
     public void close()throws SQLException{
         con.close();
